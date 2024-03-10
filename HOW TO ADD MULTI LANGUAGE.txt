@@ -1,0 +1,16 @@
+pa11y, runner.js		
+		
+// Execute all of the runners and process issues
+for (const runner of options.runners) {
+	const runnerIssues = await pa11y.runners[runner](options, pa11y);
+	runnerIssues.map(issue => {
+		issue.runner = runner;
+		return issue;
+	});
+	result.issues = result.issues.concat(runnerIssues);
+}
+result.issues = processIssues(result.issues);
+
+
+pass language here:
+const runnerIssues = await pa11y.runners[runner](options, pa11y);
